@@ -1,35 +1,81 @@
-//LISTA DE TAREFAS ONDE O USUARIO PODE ADICIONAR, REMOVER E DAR UM CHEK NA TAREFA
 var calc = document.getElementById("num");
 var tab = document.getElementById("flista");
-var valor = [];
+var valor = JSON.parse(localStorage.getItem('tarefas')) || [];
+
+function carregarTarefas() {
+    tab.innerHTML = '';
+    valor.forEach((n, index) => {
+        var div = document.createElement('div');
+        var checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.id = `check-${index}`;
+
+        var label = document.createElement('label');
+        label.htmlFor = checkbox.id;
+        label.textContent = n;
+
+        var deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Remover';
+        deleteButton.onclick = function() {
+            removerTarefa(div, index);
+        };
+
+        div.appendChild(checkbox);
+        div.appendChild(label);
+        div.appendChild(deleteButton);
+
+        tab.appendChild(div);
+    });
+}
 
 function adicionar() {
     var n = calc.value;
     if (n) {
-        valor.push(n); // Adiciona o texto ao array
+        valor.push(n);
 
-         // Cria um novo elemento <div> para o checkbox e o texto
         var div = document.createElement('div');
         var checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
-        checkbox.id = `check-${valor.length}`; // ID único para o checkbox
+        checkbox.id = `check-${valor.length - 1}`;
 
         var label = document.createElement('label');
-        label.htmlFor = checkbox.id; // Associa o label ao checkbox
-        label.textContent = n; // Define o texto do label como a string
+        label.htmlFor = checkbox.id;
+        label.textContent = n;
 
-        div.appendChild(checkbox); // Adiciona o checkbox ao div
-        div.appendChild(label); // Adiciona o label ao div
-        tab.appendChild(div); // Adiciona o div ao container
+        var deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Remover';
+        deleteButton.onclick = function() {
+            removerTarefa(div, valor.indexOf(n));
+        };
 
-        calc.value = ''; // Limpa o campo de entrada
-        calc.focus(); // Coloca o foco novamente no campo de entrada
+        div.appendChild(checkbox);
+        div.appendChild(label);
+        div.appendChild(deleteButton);
+
+        tab.appendChild(div);
+
+        localStorage.setItem('tarefas', JSON.stringify(valor));
+
+        calc.value = '';
+        calc.focus();
     } else {
-             alert("Insira um texto");
+        alert("Insira um texto");
     }
 }
 
-function apagarHistorico() {
-    valor = []; // Limpa o array
-    tab.innerHTML = ''; // Limpa o conteúdo do <div> com os checkboxes
+function removerTarefa(div, index) {
+    valor.splice(index, 1);
+    tab.removeChild(div);
+
+    localStorage.setItem('tarefas', JSON.stringify(valor));
 }
+
+function apagarHistorico() {
+    valor = [];
+    localStorage.removeItem('tarefas');
+    tab.innerHTML = '';
+}
+
+window.onload = function() {
+    carregarTarefas();
+};

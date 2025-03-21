@@ -1,29 +1,117 @@
-body{
-    background-color: rgb(40, 109, 86);
-    font: normal 15 pt arial;
-
+body {
+    background-color: #cfdfe4;
+    font: normal 15pt arial;
 }
-header{
-    color:white;
+
+header {
+    color: #ffffff;
     text-align: center;
-
+    text-shadow: 5px 5px 10px rgb(0, 0, 0);
 }
-section{
+
+section {
     background: white;
     border-radius: 10px;
     padding: 15px;
     width: 500px;
     margin: auto;
     box-shadow: 5px 5px 10px rgb(24, 23, 23);
-
-
 }
 
-footer{
-    color:white;
+footer {
+    color: white;
     text-align: center;
     font-size: italic;
 }
-select{
+
+select {
     width: 150px;
 }
+
+
+#flista {
+    max-width: 100%; 
+    margin-top: 20px;
+}
+
+#flista div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden; 
+    width: 90%; 
+    background-color: #f9f9f9;
+}
+
+
+#flista label {
+    flex-grow: 1; 
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    padding-right: 10px; 
+}
+
+
+#flista button {
+    margin-left: 10px;
+    padding: 5px 10px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#flista button:hover {
+    background-color: #d32f2f;
+}
+
+
+#num {
+    width: 90%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.adicionar-btn {
+    background-color: #2ca494;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.adicionar-btn:hover {
+    background-color: #1f7f6f;
+}
+
+.apagar-btn {
+    background-color: #f44336;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.apagar-btn:hover {
+    background-color: #d32f2f;
+}
+img {
+    border: 2px solid #2ca494;  
+    border-radius: 10px;         
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);  
+}
+
+
